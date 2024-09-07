@@ -1,0 +1,165 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* added to reset to clear the accessible border behaviour in chrome update */
+*,
+*:focus,
+*:hover {
+  outline: none;
+}
+
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+input,
+label {
+  max-width: 345px;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+.sidebar {
+  /* background-color: #878787; */
+  background-color: #00747c;
+  grid-column: 1 / 2;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  z-index: 100;
+  box-shadow: 5px 0px 10px #202022;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  gap: 0.5rem;
+}
+
+.form-title {
+  margin-bottom: 2rem;
+}
+
+.submit-book {
+  margin-top: 1rem;
+  max-width: 188px;
+}
+
+.book-container {
+  background-color: #cacaca;
+  grid-column: 2 / 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 10%));
+  grid-template-rows: repeat(auto-fit, 300px);
+  gap: 2rem;
+  place-items: center;
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+
+.book {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: #00bbc9;
+  box-shadow: 5px 5px white, 5px 5px 0 2px #00bbc9;
+  /* z-index: 1000; */
+}
+
+.title-text,
+.author-text,
+.pages-text {
+  background-color: white;
+  position: absolute;
+  text-align: center;
+  border-radius: 0.25rem;
+}
+
+.title-text {
+  top: 12%;
+  width: 75%;
+}
+.author-text {
+  top: 30%;
+  width: 65%;
+}
+.pages-text {
+  bottom: 15%;
+  width: 40%;
+}
+
+.completed-book {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  display: flex;
+  gap: 5%;
+  justify-content: center;
+}
+
+@media screen and (max-width: 950px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 380px 1fr;
+  }
+
+  .sidebar {
+    grid-column: 1 / 2;
+    box-shadow: 0px 5px 10px #202022;
+  }
+
+  .book-container {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+  }
+
+  .form {
+    padding: 0 10vw;
+    max-width: 80vw;
+    margin-top: 2rem;
+  }
+}
