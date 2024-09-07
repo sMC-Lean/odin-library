@@ -18,7 +18,8 @@ function Book(title, author, pages, read = false) {
   this.pages = pages;
   this.read = read;
 }
-// function to build the book elements form the library array each time a book is submitted or a book is ticked as read;
+
+// function to build the book elements form the library array each time a book is submitted;
 function renderBooks() {
   bookContainer.innerHTML = "";
   myLibrary.forEach((book, index) => {
@@ -60,7 +61,7 @@ submitBookButton.addEventListener("click", (event) => {
   renderBooks();
 });
 
-// add event listener to the book container, dlegated listener for the delete buttons on each book;
+// add event listener to the book container, delegated listener for the delete buttons on each book;
 bookContainer.addEventListener("click", deleteBook);
 
 // init function adds a couple of example books to the library data object and renders the library for the first time;
