@@ -132,13 +132,13 @@ h6 {
   width: 40%;
 }
 
-.completed-book {
+.delete-book {
   position: absolute;
-  bottom: 5%;
-  width: 100%;
+  bottom: 2%;
+  /* width: 100%;
   display: flex;
   gap: 5%;
-  justify-content: center;
+  justify-content: center; */
 }
 
 @media screen and (max-width: 950px) {
