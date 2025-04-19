@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
+    <script defer src="script.js" type="module"></script>
     <title>library</title>
   </head>
   <body>
     <div class="wrapper">
       <div class="sidebar">
-        <form class="form">
+        <form id="form">
           <p class="form-title">Add new book to library</p>
           <label for="title">Title:</label>
           <input id="title" type="text" placeholder="enter book title" />
@@ -18,7 +18,8 @@
           <input id="author" type="text" placeholder="enter book author" />
           <label for="pages">No. of pages:</label>
           <input id="pages" type="number" placeholder="enter no. of pages" />
-          <button class="submit-book">Submit new book</button>
+          <button id="submit-book">Submit new book</button>
+          <div id="errors"></div>
         </form>
       </div>
       <div class="book-container"></div>

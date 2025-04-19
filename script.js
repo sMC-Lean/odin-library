@@ -1,12 +1,14 @@
 "use strict";
-
+import { valEvents, validateInput, validateForm } from "./validation.js";
 // select DOM elements;
 
 const bookContainer = document.querySelector(".book-container");
-const submitBookButton = document.querySelector(".submit-book");
+const submitBookButton = document.querySelector("#submit-book");
 const newBookTitle = document.querySelector("#title");
 const newBookAuthor = document.querySelector("#author");
 const newBookPages = document.querySelector("#pages");
+const newBookForm = document.querySelector("#form");
+const errorText = document.querySelector("#errors");
 
 class Library {
   constructor() {
@@ -79,11 +81,41 @@ bookContainer.addEventListener("click", myLibrary.deleteBook);
 // function pushes the inputted book to the library object, clears the inputs and then rerenders the library;
 submitBookButton.addEventListener("click", (event) => {
   event.preventDefault();
-  myLibrary.submitBookToLibrary(
-    newBookTitle.value,
-    newBookAuthor.value,
-    newBookPages.value
-  );
-  newBookTitle.value = newBookAuthor.value = newBookPages.value = "";
+  // validate Form input on submission and display error message on failure;
+  const newTitle = newBookTitle.value;
+  const newAuthor = newBookAuthor.value;
+  const newPages = newBookPages.value;
+  const { inputErrors } = validateForm(newBookForm);
+  if (inputErrors.length) {
+    errorText.style.border = "2px solid red";
+    errorText.textContent = inputErrors.reduce(
+      (outputString, currentError, currentIndex, array) => {
+        currentIndex === 0
+          ? (outputString += ` ${currentError}`)
+          : currentIndex === array.length - 1
+          ? (outputString += ` and ${currentError}`)
+          : (outputString += `, ${currentError}`);
+        return outputString;
+      },
+      "Please input"
+    );
+    return;
+  }
+  myLibrary.submitBookToLibrary(newTitle, newAuthor, newPages);
+  newBookTitle.value =
+    newBookAuthor.value =
+    newBookPages.value =
+    errorText.textContent =
+      "";
+  errorText.style.border = "none";
   myLibrary.renderBooks();
+});
+
+// adds progressive validation to the UI for user;
+valEvents.forEach((valEvent) => {
+  document.querySelectorAll("input").forEach((element) =>
+    element.addEventListener(valEvent, (event) => {
+      validateInput(event.target);
+    })
+  );
 });
